@@ -18,9 +18,12 @@
   -->
 
   <main>
+    <application name="@Prem/navbar"></application>
     <route default>
-      <application name="@Prem/navbar"></application>
       <application name="@single-spa/welcome"></application>
+    </route>
+    <route path="react">
+      <application name="@Prem/react"></application>
     </route>
   </main>
 </single-spa-router>
