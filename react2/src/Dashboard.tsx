@@ -4,7 +4,7 @@ export default function Dashboard() {
   localStorage.setItem("token", "prem");
   return (
     <section>
-      <h1>React Dashbord App 1 Component</h1>
+      <h1>React Dashbord Component App2</h1>
     </section>
   );
 }

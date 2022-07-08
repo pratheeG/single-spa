@@ -9,17 +9,17 @@ export default function Root(props) {
         <section className="navbar">
           <Link
             to={{
-              pathname: "/react",
+              pathname: "/app1",
             }}
           >
-            React
+            App 1
           </Link>
           <Link
             to={{
-              pathname: "/angular"
+              pathname: "/app2"
             }}
           >
-            Angular
+            App 2
           </Link>
         </section>
       </BrowserRouter>

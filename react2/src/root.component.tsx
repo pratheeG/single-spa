@@ -5,7 +5,7 @@ import NotFound from "./NotFound";
 export default function Root(props) {
   return <BrowserRouter>
   <Routes>
-    <Route path="/app1" element={<App />} />
+    <Route path="/app2" element={<App />} />
     <Route path='*' element={<NotFound />} />
   </Routes>
   </BrowserRouter>;
