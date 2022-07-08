@@ -5,6 +5,10 @@ export default function Dashboard() {
   return (
     <section>
       <h1>React Dashbord Component App2</h1>
+      <Parcel
+        config={() => System.import("@Prem/reactParcel")}
+        wrapWith="section"
+      />
     </section>
   );
 }
