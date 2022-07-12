@@ -1,3 +1,17 @@
+import { state$ } from '@Prem/Utility';
+import { useEffect, useState } from 'react';
+
 export default function Root(props) {
-  return <section>{props.name} is mounted!</section>;
+  const [userName, setUserName] = useState('');
+  useEffect(() => {
+    const subs = state$.subscribe((res)=> {
+      setUserName(res?.name || '')
+    })
+
+    return () => {
+      subs.unsubscribe()
+    }
+  }, []);
+
+  return <section> <strong>Parcel App - User Name: </strong> `{userName}`</section>;
 }
