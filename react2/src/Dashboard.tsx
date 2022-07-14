@@ -1,34 +1,41 @@
 import Parcel from "single-spa-react/parcel";
-import { state$ } from '@Prem/Utility';
-import { ChangeEvent, useState } from "react";
+import { userCount$ } from "@Prem/Utility";
+import { useEffect, useState } from "react";
+import "./Dashboard.css";
 
 export default function Dashboard() {
   localStorage.setItem("token", "prem");
-  const [userName, setUserName] = useState('');
+  const [userCount, setUserCount] = useState(0);
   const [showParcelComp, setShowParcelComp] = useState(false);
 
-  const eventChanged = (event: ChangeEvent<HTMLInputElement>) => {
-    setUserName(event.target.value)
-    state$.next({  name: event.target.value})
-  }
+  useEffect(() => {
+    userCount$.subscribe((res) => {
+      setUserCount(res);
+    });
+  }, []);
 
-  
   return (
     <section>
-      <h1>React Dashbord Component App2</h1>
+      <h1 className="heading">User Component</h1>
 
-      <div>
-        <button onClick={() => setShowParcelComp(!showParcelComp)}> {showParcelComp ? 'Hide' : 'Show'} Parcel Component</button>
+      <div className="heading">
+        <strong>Total Users: </strong> {userCount}
       </div>
-      { showParcelComp && <div>
-      <div>
-        <input type="text"  value={userName} onChange={eventChanged}/>
+      <div className="app-container">
+        <div>
+          <button onClick={() => setShowParcelComp(!showParcelComp)}>
+            {showParcelComp ? "Hide" : "Show"} Parcel Component
+          </button>
+        </div>
+        {showParcelComp && (
+          <div className="parcel-app">
+            <Parcel
+              config={() => System.import("@Prem/reactParcel")}
+              wrapWith="section"
+            />
+          </div>
+        )}
       </div>
-      <Parcel
-        config={() => System.import("@Prem/reactParcel")}
-        wrapWith="section"
-      />
-      </div>}
     </section>
   );
 }
